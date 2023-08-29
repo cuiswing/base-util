@@ -94,7 +94,7 @@
                             <!-- The commit message -->
                             <message>Maven artifacts for ${project.artifactId}-${project.version}</message>
                             <!-- The location where the site is uploaded -->
-                            <repositoryName>base-util</repositoryName> <!-- github repo name -->
+                            <repositoryName>maven-repository</repositoryName> <!-- github repo name -->
                             <!--
 					  github的用户名，注意不是登录的用户名，此项需要登录后，进入https://github.com/settings/profile页面配置Name属性，
 					  否则会报
@@ -111,7 +111,7 @@
                             <!--指定要上传的分支, refs/heads 这个不变，后面的分支名可选，
                             可以采取一个jar包使用一个分支的策略。
 		                    若多个jar包同时发布在同一个分支的话，会覆盖。。。。-->
-                            <branch>refs/heads/master</branch>
+                            <branch>refs/heads/base-util</branch>
                             <!-- 指定从哪里去取打好的包，并上传至github -->
                             <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
                             <!-- 包含outputDirectory标签内填的文件夹中的所有内容 -->
