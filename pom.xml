@@ -11,7 +11,6 @@
     <properties>
         <lombok.version>1.18.8</lombok.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <github.global.server>github</github.global.server>
     </properties>
 
     <dependencyManagement>
@@ -76,52 +75,52 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <!-- Deploy the web site -->
-                <groupId>com.github.github</groupId>
-                <artifactId>site-maven-plugin</artifactId>
-                <version>0.12</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>site</goal>
-                        </goals>
-                        <!-- select the Maven phase in which the plugin will be executed -->
-                        <phase>deploy</phase>
-                        <configuration>
-                            <!-- Plugin configuration goes here -->
-                            <server>github</server>
-                            <!-- The commit message -->
-                            <message>Maven artifacts for ${project.artifactId}-${project.version}</message>
-                            <!-- The location where the site is uploaded -->
-                            <repositoryName>maven-repository</repositoryName> <!-- github repo name -->
-                            <!--
-					  github的用户名，注意不是登录的用户名，此项需要登录后，进入https://github.com/settings/profile页面配置Name属性，
-					  否则会报
-					  [ERROR] Failed to execute goal com.github.github:site-maven-plugin:0.12:site
-					  (default) on project rfcore: Error creating commit: Invalid request.
-					  [ERROR] For 'properties/name', nil is not a string.
-					  [ERROR] For 'properties/name', nil is not a string. (422)
-					  [ERROR] -> [Help 1]
-					  的错误
-					-->
-                            <repositoryOwner>cuiswing</repositoryOwner> <!-- organization or user name  -->
-                            <!-- Use merge or override the content -->
-                            <merge>true</merge>
-                            <!--指定要上传的分支, refs/heads 这个不变，后面的分支名可选，
-                            可以采取一个jar包使用一个分支的策略。
-		                    若多个jar包同时发布在同一个分支的话，会覆盖。。。。-->
-                            <branch>refs/heads/base-util</branch>
-                            <!-- 指定从哪里去取打好的包，并上传至github -->
-                            <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-                            <!-- 包含outputDirectory标签内填的文件夹中的所有内容 -->
-                            <!--                        <includes>-->
-                            <!--                            <include>**/*</include>-->
-                            <!--                        </includes>-->
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--&lt;!&ndash; Deploy the web site &ndash;&gt;-->
+                <!--<groupId>com.github.github</groupId>-->
+                <!--<artifactId>site-maven-plugin</artifactId>-->
+                <!--<version>0.12</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<goals>-->
+                            <!--<goal>site</goal>-->
+                        <!--</goals>-->
+                        <!--&lt;!&ndash; select the Maven phase in which the plugin will be executed &ndash;&gt;-->
+                        <!--<phase>deploy</phase>-->
+                        <!--<configuration>-->
+                            <!--&lt;!&ndash; Plugin configuration goes here &ndash;&gt;-->
+                            <!--<server>github</server>-->
+                            <!--&lt;!&ndash; The commit message &ndash;&gt;-->
+                            <!--<message>Maven artifacts for ${project.artifactId}-${project.version}</message>-->
+                            <!--&lt;!&ndash; The location where the site is uploaded &ndash;&gt;-->
+                            <!--<repositoryName>maven-repository</repositoryName> &lt;!&ndash; github repo name &ndash;&gt;-->
+                            <!--&lt;!&ndash;-->
+					  <!--github的用户名，注意不是登录的用户名，此项需要登录后，进入https://github.com/settings/profile页面配置Name属性，-->
+					  <!--否则会报-->
+					  <!--[ERROR] Failed to execute goal com.github.github:site-maven-plugin:0.12:site-->
+					  <!--(default) on project rfcore: Error creating commit: Invalid request.-->
+					  <!--[ERROR] For 'properties/name', nil is not a string.-->
+					  <!--[ERROR] For 'properties/name', nil is not a string. (422)-->
+					  <!--[ERROR] -> [Help 1]-->
+					  <!--的错误-->
+					<!--&ndash;&gt;-->
+                            <!--<repositoryOwner>cuiswing</repositoryOwner> &lt;!&ndash; organization or user name  &ndash;&gt;-->
+                            <!--&lt;!&ndash; Use merge or override the content &ndash;&gt;-->
+                            <!--<merge>true</merge>-->
+                            <!--&lt;!&ndash;指定要上传的分支, refs/heads 这个不变，后面的分支名可选，-->
+                            <!--可以采取一个jar包使用一个分支的策略。-->
+		                    <!--若多个jar包同时发布在同一个分支的话，会覆盖。。。。&ndash;&gt;-->
+                            <!--<branch>refs/heads/base-util</branch>-->
+                            <!--&lt;!&ndash; 指定从哪里去取打好的包，并上传至github &ndash;&gt;-->
+                            <!--<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>-->
+                            <!--&lt;!&ndash; 包含outputDirectory标签内填的文件夹中的所有内容 &ndash;&gt;-->
+                            <!--&lt;!&ndash;                        <includes>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                            <include>**/*</include>&ndash;&gt;-->
+                            <!--&lt;!&ndash;                        </includes>&ndash;&gt;-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
 
         </plugins>
     </build>
