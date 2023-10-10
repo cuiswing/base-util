@@ -10,7 +10,7 @@ git add .
 git commit -m "deploy xxx 版本号"
 git remote add origin git@gitee.com:cuiswing/maven-repository.git
 git checkout -b base-util
-git push origin base-util
+git push origin base-util --force
 ```
 
 gitee 仓库引用 url：
