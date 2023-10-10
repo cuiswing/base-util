@@ -17,15 +17,15 @@ public class IdCardUtil {
     /**
      * 身份证号码校验，长度必须为 15 位或者 18 位
      *
-     * @param idcard 身份证号
+     * @param idCard 身份证号
      * @return true：校验通过，false：校验不通过
      */
-    public static boolean validate(String idcard) {
-        if (idcard.length() != 15 && idcard.length() != 18) {
+    public static boolean validate(String idCard) {
+        if (idCard.length() != 15 && idCard.length() != 18) {
             return false;
         }
-        char validateCode = getValidateCode(idcard.substring(0, idcard.length() - 1));
-        return validateCode == idcard.substring(idcard.length() - 1).charAt(0);
+        char validateCode = getValidateCode(idCard.substring(0, idCard.length() - 1));
+        return validateCode == idCard.substring(idCard.length() - 1).charAt(0);
     }
 
     /**
@@ -41,6 +41,29 @@ public class IdCardUtil {
         }
         int mode = sum % 11;
         return validate[mode];
+    }
+
+    /**
+     * 获取身份证的生日
+     *
+     * @param idCard 身份证号码
+     * @return 出生日期，格式：yyyyMMdd
+     */
+    public static String getBirthday(String idCard) {
+        String birthDate = idCard.substring(6, 14);
+        return birthDate;
+    }
+
+    /**
+     * 获取身份证的性别
+     *
+     * @param idCard 身份证号码
+     * @return 性别：男 or 女
+     */
+    public static String getSex(String idCard) {
+        String genderCode = idCard.substring(idCard.length() - 2, idCard.length() - 1);
+        String gender = Integer.valueOf(genderCode) % 2 == 0 ? "女" : "男";
+        return gender;
     }
 
 }
