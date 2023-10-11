@@ -27,6 +27,7 @@ public enum EmailNoticeEnum {
     OUTDOOR_WEEK_REPORT("户外周报"),
     OUTDOOR_MONTH_REPORT("户外月报"),
     OUTDOOR_YEAR_REPORT("户外年报"),
+    OUTDOOR_PERSON_STATISTICS("户外人员统计"),
     ;
 
     @Getter
