@@ -28,6 +28,8 @@ public enum EmailNoticeEnum {
     OUTDOOR_MONTH_REPORT("户外月报"),
     OUTDOOR_YEAR_REPORT("户外年报"),
     OUTDOOR_PERSON_STATISTICS("户外人员统计"),
+    HOSPITAL_SUCCESS("成功"),
+    HOSPITAL_FAIL("失败"),
     ;
 
     @Getter
