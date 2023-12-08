@@ -3,6 +3,7 @@ base util
 
 发布到 gitee 仓库流程：
 ```
+cd ~/IdeaProjects/others/base-util
 mvn clean deploy
 cd target/mvn-repo
 git init
