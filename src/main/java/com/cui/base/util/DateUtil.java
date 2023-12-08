@@ -197,17 +197,39 @@ public class DateUtil {
      *
      * @param start 格式必须为'2018-01-25'
      * @param end   格式必须为'2018-01-25'
+     * @return 返回日期字符串数组：[2020-10-10,2020-10-11,2020-10-12]
+     * @see DateUtil#getAllDaysBetweenDate(java.time.LocalDate, java.time.LocalDate)
      */
-    public static List<String> getBetweenDate(String start, String end) {
-        List<String> list = new ArrayList<>();
+    public static List<String> getAllDaysBetweenDate(String start, String end) {
         LocalDate startDate = LocalDate.parse(start);
         LocalDate endDate = LocalDate.parse(end);
 
-        long distance = ChronoUnit.DAYS.between(startDate, endDate);
+        return getAllDaysBetweenDate(startDate, endDate);
+    }
+
+    /**
+     * 获取两个日期间隔的所有日期,前后两天都包含
+     * 结束日期 >= 开始日期
+     *
+     * @param start 开始日期
+     * @param end   结束日期
+     * @return 返回日期字符串数组：[2020-10-10,2020-10-11,2020-10-12]
+     * @see DateUtil#getAllDaysBetweenDate(java.time.LocalDate, java.time.LocalDate)
+     */
+    public static List<String> getAllDaysBetweenDate(Date start, Date end) {
+        LocalDate startDate = start.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate = end.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return getAllDaysBetweenDate(startDate, endDate);
+    }
+
+    public static List<String> getAllDaysBetweenDate(LocalDate start, LocalDate end) {
+        List<String> list = new ArrayList<>();
+        long distance = ChronoUnit.DAYS.between(start, end);
         if (distance < 0) {
             return list;
         }
-        Stream.iterate(startDate, d -> d.plusDays(1)).limit(distance + 1).forEach(f -> {
+        Stream.iterate(start, d -> d.plusDays(1)).limit(distance + 1).forEach(f -> {
             list.add(f.toString());
         });
         return list;
