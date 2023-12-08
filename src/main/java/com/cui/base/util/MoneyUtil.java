@@ -35,7 +35,7 @@ public class MoneyUtil {
      * @param yuanAmount 元
      * @return 分
      */
-    public static Integer yuanConvertToFee(double yuanAmount) {
+    public static Integer yuanConvertToFen(double yuanAmount) {
         BigDecimal feeAmount = new BigDecimal(yuanAmount).multiply(VALUE_100);
         System.out.println(feeAmount.setScale(0, BigDecimal.ROUND_HALF_UP));
         return feeAmount.intValue();
@@ -47,7 +47,7 @@ public class MoneyUtil {
      * @param yuanAmount 元
      * @return 分
      */
-    public static Integer yuanConvertToFee(String yuanAmount) {
+    public static Integer yuanConvertToFen(String yuanAmount) {
         BigDecimal feeAmount = new BigDecimal(yuanAmount).multiply(VALUE_100);
         // 不需要四舍五入
         System.out.println(feeAmount.setScale(0, BigDecimal.ROUND_HALF_UP));
@@ -62,13 +62,13 @@ public class MoneyUtil {
         System.out.println(fenConvertToYuan(111L));
 
         System.out.println("---------");
-        System.out.println(yuanConvertToFee("0.00"));
-        System.out.println(yuanConvertToFee("0.01"));
-        System.out.println(yuanConvertToFee("0.10"));
-        System.out.println(yuanConvertToFee("1.00"));
-        System.out.println(yuanConvertToFee("12.553"));
-        System.out.println(yuanConvertToFee("12.554"));
-        System.out.println(yuanConvertToFee("12.555"));
-        System.out.println(yuanConvertToFee("12.556"));
+        System.out.println(yuanConvertToFen("0.00"));
+        System.out.println(yuanConvertToFen("0.01"));
+        System.out.println(yuanConvertToFen("0.10"));
+        System.out.println(yuanConvertToFen("1.00"));
+        System.out.println(yuanConvertToFen("12.553"));
+        System.out.println(yuanConvertToFen("12.554"));
+        System.out.println(yuanConvertToFen("12.555"));
+        System.out.println(yuanConvertToFen("12.556"));
     }
 }
