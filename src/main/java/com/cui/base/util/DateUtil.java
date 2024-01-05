@@ -192,7 +192,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取两个日期间隔的所有日期,前后两天都包含
+     * 获取两个日期间隔的所有日期字符串,包含起止日期
      * 结束日期 >= 开始日期
      *
      * @param start 格式必须为'2018-01-25'
@@ -208,7 +208,7 @@ public class DateUtil {
     }
 
     /**
-     * 获取两个日期间隔的所有日期,前后两天都包含
+     * 获取两个日期间隔的所有日期字符串,包含起止日期
      * 结束日期 >= 开始日期
      *
      * @param start 开始日期
@@ -229,12 +229,15 @@ public class DateUtil {
         if (distance < 0) {
             return list;
         }
-        Stream.iterate(start, d -> d.plusDays(1)).limit(distance + 1).forEach(f -> {
-            list.add(f.toString());
+        Stream.iterate(start, d -> d.plusDays(1)).limit(distance + 1).forEach(localDate -> {
+            list.add(localDate.toString());
         });
         return list;
     }
 
+    /**
+     * 将不带时区的 localDateTime 转为服务器默认时区的 Date 对象
+     */
     public static Date localDateTime2Date(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
@@ -247,12 +250,24 @@ public class DateUtil {
         return DateUtil.localDateTime2Date(localDateTime);
     }
 
+    /**
+     * 获取指定 date 当天的起始时间
+     *
+     * @param date 指定 date
+     * @return date 对应当天的起始时间，即 00:00:00
+     */
     public static Date getStartByDate(Date date) {
         LocalDateTime localDateTime = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalDateTime startOfDay = localDateTime.with(LocalTime.MIN);
         return DateUtil.localDateTime2Date(startOfDay);
     }
 
+    /**
+     * 获取指定 date 当天的结束时间
+     *
+     * @param date 指定 date
+     * @return date 对应当天的结束时间，即 23:59:59.999
+     */
     public static Date getEndByDate(Date date) {
         LocalDateTime localDateTime = Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
         LocalDateTime startOfDay = localDateTime.with(LocalTime.MAX);
