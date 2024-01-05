@@ -236,10 +236,47 @@ public class DateUtil {
     }
 
     /**
+     * 获取两个日期间隔的所有日期对象,包含起止日期
+     * 结束日期 >= 开始日期
+     *
+     * @param start 开始日期
+     * @param end   结束日期
+     * @return 返回日期对象数组，所有日期的时间均为当天的最小值
+     * @see DateUtil#getAllDateBetweenDate(java.time.LocalDate, java.time.LocalDate)
+     */
+    public static List<Date> getAllDateBetweenDate(Date start, Date end) {
+        LocalDate startDate = start.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate = end.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return getAllDateBetweenDate(startDate, endDate);
+    }
+
+    public static List<Date> getAllDateBetweenDate(LocalDate start, LocalDate end) {
+        List<Date> list = new ArrayList<>();
+        long distance = ChronoUnit.DAYS.between(start, end);
+        if (distance < 0) {
+            return list;
+        }
+        Stream.iterate(start, d -> d.plusDays(1)).limit(distance + 1).forEach(localDate -> {
+            Date date = DateUtil.localDate2Date(localDate);
+            list.add(date);
+        });
+        return list;
+    }
+
+    /**
      * 将不带时区的 localDateTime 转为服务器默认时区的 Date 对象
      */
     public static Date localDateTime2Date(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    /**
+     * 将不带时区的 localDate 转为服务器默认时区且时间值为起始点 00:00:00 的 Date 对象
+     */
+    public static Date localDate2Date(LocalDate localDate) {
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+        return DateUtil.localDateTime2Date(localDateTime);
     }
 
     /**
