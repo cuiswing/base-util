@@ -1,4 +1,4 @@
-package com.cui.base.util;
+package com.cui.base.util.http;
 
 import lombok.extern.slf4j.Slf4j;
 
