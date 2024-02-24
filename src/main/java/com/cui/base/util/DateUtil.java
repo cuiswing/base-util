@@ -31,6 +31,9 @@ public class DateUtil {
 
     public static final String FMT_YMD = "yyyyMMdd";
     public static final String FMT_Y_M_D = "yyyy-MM-dd";
+    // M 月份数字。一位数的月份没有前导零。
+    // d 月中的某一天。一位数的日期没有前导零。
+    public static final String FMT_Y_M_D_by_Diagonal = "yyyy/M/d";
 
     public static final String FMT_YMD_HMS = "yyyyMMddHHmmss";
     public static final String FMT_Y_M_D_H_M = "yyyy-MM-dd HH:mm";
