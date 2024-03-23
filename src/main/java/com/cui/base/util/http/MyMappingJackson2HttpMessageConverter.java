@@ -12,6 +12,11 @@ import java.util.List;
  * 可将响应头为content-type:text/plain 的响应内容解析为 json对象。content-type:application/json
  * <p>
  * 参考：https://blog.csdn.net/kinginblue/article/details/52706155
+ * <p>
+ * MappingJackson2HttpMessageConverter ： 是 Spring 框架中用于将 HTTP 请求和响应转换为 JSON 的转换器。
+ * 在处理 JSON 数据时，它会自动将字符串中的 Unicode 字符转换为 UTF-8 编码。
+ * 比如接口中返回的有 unicode 数据，且使用了对象来接收，则会使用MappingJackson2HttpMessageConverter来进行反序列化；
+ * 如果使用 String 类型来接收，则使用的是StringHttpMessageConverter来处理，则不会将 unicode 处理，保持了原样；
  *
  * @author CUI
  * @since 2021-05-16
