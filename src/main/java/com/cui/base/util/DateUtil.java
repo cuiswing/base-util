@@ -321,4 +321,29 @@ public class DateUtil {
         LocalDateTime startOfDay = localDateTime.with(LocalTime.MAX);
         return DateUtil.localDateTime2Date(startOfDay);
     }
+
+    /**
+     * 特定时间是否介于指定时间段之间，不包含前后两个边界时间
+     *
+     * @param startTime   指定开始时间
+     * @param endTime     指定结束时间
+     * @param compareTime 待比较时间
+     * @return true：startTime< compareTime < endTime
+     */
+    public static boolean isBetweenTime(Date startTime, Date endTime, Date compareTime) {
+        return startTime.before(compareTime) && endTime.after(compareTime);
+    }
+
+    /**
+     * 特定时间是否介于指定时间段之间,包含前后两个边界时间
+     *
+     * @param startTime   指定开始时间
+     * @param endTime     指定结束时间
+     * @param compareTime 待比较时间
+     * @return true：startTime< compareTime < endTime
+     */
+    public static boolean isBetweenAndEqualTime(Date startTime, Date endTime, Date compareTime) {
+        return startTime.equals(compareTime) || endTime.equals(compareTime) ||
+                startTime.before(compareTime) && endTime.after(compareTime);
+    }
 }
