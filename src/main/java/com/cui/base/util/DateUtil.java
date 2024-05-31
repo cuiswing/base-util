@@ -291,6 +291,14 @@ public class DateUtil {
     }
 
     /**
+     * 获取今天的23:59:59时间
+     */
+    public static Date getEndOfToday() {
+        LocalDateTime localDateTime = LocalDate.now().atTime(LocalTime.MAX);
+        return DateUtil.localDateTime2Date(localDateTime);
+    }
+
+    /**
      * 获取指定 date 当天的起始时间
      *
      * @param date 指定 date
